@@ -44,17 +44,16 @@ extern uint8_t i_cache_state;
 //and pass the result in its result:shadow registers
 //Then the clock counter adds one.
 void Advance_pipeline(){
-	//if((!stall)){
-	if(!stall){
-	Pipeline_IF();
-	Pipeline_EX();
-	Pipeline_ID();
-	Pipeline_MEM();
-	Pipeline_WB();
-	move_shadow_to_reg();
-	PC_increment(i_cache_request_handler.data_O);
-	}
-	clock_counter++;
+    	if(!stall){
+		Pipeline_IF();
+		Pipeline_EX();
+		Pipeline_ID();
+		Pipeline_MEM();
+		Pipeline_WB();
+		move_shadow_to_reg();
+		PC_increment(i_cache_request_handler.data_O);
+    	}
+    	clock_counter++;
 }
 
 void PC_increment(uint32_t machine_code){
